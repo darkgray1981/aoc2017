@@ -1,0 +1,32 @@
+01: set b 79	    b = 79
+02: set c b		    c = b
+03: jnz a 2		    if a != 0 goto 5
+04: jnz 1 5         else goto 9
+05: mul b 100       b = b * 100
+06: sub b -100000   b = b + 100000      b=107900
+07: set c b         c = b
+08: sub c -17000    c = c + 17000       c=124900
+09: set f 1         f = 1               f=1
+10: set d 2         d = 2               d=2
+11: set e 2         e = 2               e=2
+12: set g d         g = d               g=d=2
+13: mul g e         g = g * e           g=d*e=4
+14: sub g b         g = g - b           g=4-b=-107896
+15: jnz g 2         if g != 0 goto 17   b==d*e?
+16: set f 0         f = 0               f=0  # b==d*e
+17: sub e -1        e = e + 1           e=2
+18: set g e         g = e               g=e
+19: sub g b         g = g - b           g=e-b
+20: jnz g -8        if g != 0 goto 12   # b==e?
+21: sub d -1        d = d + 1           d++
+22: set g d         g = d
+23: sub g b         g = g - b
+24: jnz g -13       if g != 0 goto 11   # b==d?
+25: jnz f 2         if f != 0 goto 27   # f==0?
+26: sub h -1        h = h + 1           h++ if b == d && f == 0
+27: set g b         g = b
+28: sub g c         g = g - c
+29: jnz g 2         if g != 0 goto 31   b==c?
+39: jnz 1 3         else goto END       b == c -> END
+31: sub b -17       b = b + 17
+32: jnz 1 -23       goto 9
